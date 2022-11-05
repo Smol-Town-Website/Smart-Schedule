@@ -9,7 +9,46 @@
     "id": 1,
     "standard": {
       "monday": {
-        "open_window": "2022-10-31T06:55:00.000Z"
+        "open_window": "2021-10-04T13:55:00.000Z",
+        "open_prefer": "2021-10-04T15:55:00.000Z",
+        "close_prefer": "2021-10-05T01:55:00.000Z",
+        "close_window": "2021-10-05T03:55:00.000Z"
+      },
+      "tuesday": {
+        "open_window": "2021-10-04T13:55:00.000Z",
+        "open_prefer": "2021-10-04T15:55:00.000Z",
+        "close_prefer": "2021-10-05T01:55:00.000Z",
+        "close_window": "2021-10-05T03:55:00.000Z"
+      },
+      "wednesday": {
+        "open_window": "2021-10-04T13:55:00.000Z",
+        "open_prefer": "2021-10-04T15:55:00.000Z",
+        "close_prefer": "2021-10-05T01:55:00.000Z",
+        "close_window": "2021-10-05T03:55:00.000Z"
+      },
+      "thursday": {
+        "open_window": "2021-10-04T13:55:00.000Z",
+        "open_prefer": "2021-10-04T15:55:00.000Z",
+        "close_prefer": "2021-10-05T01:55:00.000Z",
+        "close_window": "2021-10-05T03:55:00.000Z"
+      },
+      "friday": {
+        "open_window": "2021-10-04T13:55:00.000Z",
+        "open_prefer": "2021-10-04T15:55:00.000Z",
+        "close_prefer": "2021-10-05T01:55:00.000Z",
+        "close_window": "2021-10-05T03:55:00.000Z"
+      },
+      "saturday": {
+        "open_window": "2021-10-04T13:55:00.000Z",
+        "open_prefer": "2021-10-04T15:55:00.000Z",
+        "close_prefer": "2021-10-05T01:55:00.000Z",
+        "close_window": "2021-10-05T03:55:00.000Z"
+      },
+      "sunday": {
+        "open_window": "2021-10-04T13:55:00.000Z",
+        "open_prefer": "2021-10-04T15:55:00.000Z",
+        "close_prefer": "2021-10-05T01:55:00.000Z",
+        "close_window": "2021-10-05T03:55:00.000Z"
       }
     }
   },

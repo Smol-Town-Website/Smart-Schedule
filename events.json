@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true
+      },
+      {
+        "id": 2,
+        "acceptance": false
+      }
+    ],
+    "info": {
+      "name": "Failure at a Hackathon",
+      "location": "La casa de Zachary",
+      "description": "Iris and Zachary are being bad at coding."
+    },
+    "time": {
+      "confirmed": true,
+      "start": "2022-11-05T17:46:00.000Z",
+      "end": "2022-11-05T21:46:00.000Z"
+    }
+  }
+]
