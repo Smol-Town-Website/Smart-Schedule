@@ -1,3 +1,5 @@
+<!-- CHANGE ID TO NOT IRIS -->
+
 <!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -10,9 +12,9 @@
 <link href='fullcalendar/lib/main.css' rel='stylesheet'/> <!-- Calendar code-->
 <script src='fullcalendar/lib/main.js'></script>
 <script>
-  document.addEventListener('DOMContentLoaded', async function() {
+  async function loadCalendar(id) {
     var calendarEl = document.getElementById('calendar');
-    loadedCalendar = await api().users.getEvents(1)
+    loadedCalendar = await api().users.getEvents(id)
     parsedEvents = []
     console.log(loadedCalendar)
     loadedCalendar.forEach((calendarEvent) => {
@@ -31,7 +33,27 @@
       events: parsedEvents
     });
     calendar.render();
+  }
+  document.addEventListener('DOMContentLoaded', async function() {
+    loadCalendar(3)
   });
+  api().users.allUsers().then((users) => {
+    users = users.sort((a, b) => {
+      if (a.last>b.last) { return -1 } else { return 1 }
+    })
+    users.forEach((user) => {
+      option = document.createElement('option')
+      option.value = user.id
+      option.innerHTML = `${user.first} ${user.middle?user.middle:""}`
+      document.getElementById("loginselect").appendChild(option)
+    })
+  })
+  async function changeAccount() {
+    currentUser = await api().users.get(document.getElementById("loginselect").value)
+    currentUserId = document.getElementById("loginselect").value
+    alert(`Now logging into ${currentUser.last}, ${currentUser.first}.`)
+    loadCalendar(currentUserId)
+  }
 </script>
 
 </head>
@@ -51,8 +73,17 @@
 <div id='calendar' class=calendar></div>
 
 <sidebar style="width: 30%; display: inline-block; position: absolute; margin-top: 150px;" class="sidebar">
+  <select name="login" id="loginselect" onchange="changeAccount()">
+    
+  </select>
   <p>Friends:</p>
-  
+  <script>
+    var friends = api().users.friends(1)
+
+    friends.forEach((friend) => {
+      document.createElement('div'),
+    })
+  </script>
 </sidebar>
   
 </body>

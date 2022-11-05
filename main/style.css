@@ -1,7 +1,7 @@
 .header {
   padding: 10px;
   text-align: center;
-  background: #3a8891;
+  background: #0F3D3E;
   color: white;
   font-size: 30px;
 }
@@ -11,7 +11,11 @@ h3 {
 }
 
 body{
-  background-color: #071E3D;
+  background-color: #212121;
+	font-family: 'proxima-nova', sans-serif;
+	font-size: 18px;
+	font-weight: 100;
+	margin: 0;
 }
 .a {
   color: white;
@@ -20,15 +24,15 @@ body{
 }
 
 .btn:hover {
-  background-color: #0E5E6F;
+  background-color: #0F3D3E;
   color: white;
 }
 
 /* Style the header with a grey background and some padding */
 .header-right {
   overflow: hidden;
-  background-color: #3a8891;
-  padding: 0 px;
+  background-color: #E2DCC8;
+  padding: 0px;
   margin: 0 px;
   width: 100%;
 }
@@ -37,13 +41,14 @@ body{
 .header-right a {
   float: left;
   color: white;
-  background-color: #3A8891;
+  background-color: #0F3D3E;
   text-align: center;
   padding: 25px;
   text-decoration: none;
   font-size: 20px;
   line-height: 25px;
   border-radius: 4px;
+  margin: 20px;
 }
 
 /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
@@ -54,12 +59,12 @@ body{
 
 /* Change the background color on mouse-over */
 .header-right a:hover {
-  background-color: #0E5E6F;
+  background-color: #212121;
 }
 
 /* Style the active/current link*/
 .header-right a.active {
-  background-color: #0E5E6F;
+  background-color: #0F3D3E;
 }
 
 /* Float the link section to the right */
@@ -87,10 +92,13 @@ body{
   width: 80%;
   length: 80%;
   float: right;
+  background-color: #0F3D3E;
+  border-radius: 20px;
+  margin: 40px;
+  padding: 40px;
 }
 
 input[type=text], select {
-  width: 80%;
   float: center;
   padding: 12px 20px;
   margin: 8px 0;
@@ -101,8 +109,7 @@ input[type=text], select {
 }
 
 input[type=submit] {
-  width: 80%;
-  background-color: #278EA5;
+  background-color: #0F3D3E;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -112,5 +119,9 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: #21E6C1;
+  background-color: #0F3D3E;
+}
+form {
+  display: inline-block;
+  float: center;
 }

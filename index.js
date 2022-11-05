@@ -6,6 +6,14 @@ const users = JSON.parse(fs.readFileSync(__dirname + '/users.json'))
 const events = JSON.parse(fs.readFileSync(__dirname + '/events.json'))
 const friendships = JSON.parse(fs.readFileSync(__dirname + '/friendships.json'))
 
+function removeItemOnce(arr, value) {
+  var index = arr.indexOf(value);
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+  return arr;
+}
+
 app.get('/api/*', async (req, res) => {
   parts = req.path.split('/').slice(3)
   func = parts[0]
@@ -50,7 +58,17 @@ app.get('/api/*', async (req, res) => {
     if (func == 'friends') {
       if (!(Number(parts[1]))) return res.send({error: true})
       filtered = friendships.filter(friendship => friendship.includes(Number(parts[1])))
-      res.send({friends: filtered})
+      var friends = []
+      filtered.forEach((friendship) => {
+        console.log(`Removing ${Number(parts[1])} from ${friendship} results in ${removeItemOnce(friendship, Number(parts[1]))}.`)
+        friends.push(removeItemOnce(friendship, Number(parts[1])))
+      })
+      var loadedfriends = []
+      console.log(friends)
+      friends.forEach((friend) => {
+        loadedfriends.push(users.find(u => u.id == friend))
+      })
+      res.send({friends: loadedfriends})
     }
     if (func == 'find') {
       type = parts[1]
@@ -59,6 +77,9 @@ app.get('/api/*', async (req, res) => {
         if (!founduser) return res.send({error: true})
         res.send(founduser)
       }
+    }
+    if (func == 'allUsers') {
+      res.send(users)
     }
     if (func == 'register') {
       first = req.query.first

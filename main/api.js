@@ -31,6 +31,10 @@ function api() {
       data = await getData(base + 'users/accept/' + event_id + '?user_id=' + user_id)
       return (JSON.parse(data))
     },
+    async allUsers() {
+      data = await getData(`${base}/users/allUsers`)
+      return JSON.parse(data)
+    },
     async find(inputType, input) {
       data = await getData(base + 'users/find/' + inputType + '?input=' + input)
       return (JSON.parse(data))
