@@ -6,7 +6,12 @@
     "extra": {
       "email": "crabbywombat101@gmail.com"
     },
-    "id": 1
+    "id": 1,
+    "standard": {
+      "monday": {
+        "open_window": "2022-10-31T06:55:00.000Z"
+      }
+    }
   },
   {
     "first": "Zachary",
