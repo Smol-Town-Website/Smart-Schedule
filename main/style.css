@@ -1,26 +1,23 @@
-/* .topnav {
-  background-color: #333;
-} */
+.header {
+  padding: 10px;
+  text-align: center;
+  background: #3a8891;
+  color: white;
+  font-size: 30px;
+}
 
+h3 {
+  color: white;
+}
 
+body{
+  background-color: #071E3D;
+}
 .a {
   color: white;
   background-color: transparent;
   text-decoration: none;
 }
-
-.btn {
-  border: none;
-  background-color: #3A8891;
-  color:white;
-  text-color: white;
-  padding: 14px 28px;
-  font-size: 16px;
-  cursor: pointer;
-  display: inline-block;.
-  border-radius: 12px;
-}
-
 
 .btn:hover {
   background-color: #0E5E6F;
@@ -30,8 +27,10 @@
 /* Style the header with a grey background and some padding */
 .header-right {
   overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 20px 10px;
+  background-color: #3a8891;
+  padding: 0 px;
+  margin: 0 px;
+  width: 100%;
 }
 
 /* Style the header links */
@@ -40,9 +39,9 @@
   color: white;
   background-color: #3A8891;
   text-align: center;
-  padding: 12px;
+  padding: 25px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 25px;
   border-radius: 4px;
 }

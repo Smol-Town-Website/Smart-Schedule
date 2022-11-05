@@ -1,10 +1,16 @@
  <!DOCTYPE html>
-<h1>Create an Event</h1>
 
+<link rel="stylesheet" href="style.css">
+
+<script src="api.js"></script>
+
+<div class="header">
+  <h1>Create an Event</h1>
+</div>
 
 <!-- Date -->
+<h3>Date</h3>
 <form action="index.html" method="get" targe = "_self">
-  <label for="fname">Date:</label>
   <select id="month" name="month">
       <option value="january">January</option>
       <option value="february">February</option>
@@ -21,24 +27,31 @@
   </select>
   <input type="text" id="day" name="day" placeholder="DD">
   <input type="text" id="year" name="year" placeholder="YYYY">
-  <button type="submit" onclick="submit()">Done</button>
+  <button btn type="submit" onclick="submit()">Done</button>
 </form>
 
 <br><br>
 
 <!-- Time -->
+<h3>Preferred time</h3>
 <form action="index.html" method="get" targe = "_self">
-  <label for="fname">Time:</label>
   <input type="text" id="stime" name="stime" placeholder="Start time">
   <input type="text" id="etime" name="etime" placeholder="End time">
+  <button type="submit" onclick="submit()">Done</button>
+  <br><br>
+
+</form>
+<h3>Preferred length of event</h3>
+<form action="index.html" method="get" targe = "_self">
+  <input type="text" id="plength" name="plength" placeholder="(hrs)">
   <button type="submit" onclick="submit()">Done</button>
 </form>
 
 <br><br>
 
 <!-- Invite friends -->
-<form action="index.html" method="get" targe = "_self">
-  <label for="friend">Invite friends:</label>
+<h3>Invite friends</h3>
+<form action="events.html" method="get" targe = "_self">
   <input type="text" id="stime" name="stime" placeholder="Email">
   <button type="submit" onclick="submit()">Find</button>
 </form>
@@ -46,13 +59,15 @@
 <br><br>
 
 <!-- Other details -->
+<h3>Other details</h3>
 <form action="index.html" method="get" targe = "_self">
-  <label for="fname">Other details about the event:</label>
-  <input type="text" id="oinfo" name="oinfo">
+  <input type="text" id="oinfo" name="oinfo" placeholder = "...">
   <button type="submit" onclick="submit()">Done</button>
 </form>
 
 <br><br>
+
+<!-- js because im dumb and dont wnna make a new file ecks dee -->
 
 <script>
 

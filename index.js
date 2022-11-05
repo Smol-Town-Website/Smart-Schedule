@@ -16,6 +16,17 @@ app.get('/api/*', async (req, res) => {
       if (!founduser) return res.send({error: true})
       res.send(founduser)
     }
+    if (func == 'getEvents') {
+      if (!(Number(parts[1]))) return
+      userEvents = events.filter(theevent => {
+        theevent.users.forEach((eventUser) => {
+          console.log(eventUser.id == Number(parts[1]))
+          if (eventUser.id == Number(parts[1])) return true
+          return false
+        })
+      })
+      res.send(userEvents)
+    }
     if (func == 'addfriend') {
       if (!(Number(parts[1]))) return res.send({error: true})
       id1 = Number(parts[1])
@@ -25,6 +36,16 @@ app.get('/api/*', async (req, res) => {
       fs.writeFile(__dirname + '/friendships.json', JSON.stringify(friendships, null, 2), (err) => {if (err) console.log(err)})
       filtered = friendships.filter(friendship => friendship.includes(id1))
       res.send({confirmation: true, newfriends: filtered})
+    }
+    if (func == 'set_avail') {
+      if (!Number(parts[1])) return
+      users.find(u => u.id == parts[1]).standard[req.query['day']] = {
+        "open_window": req.query.ow,
+        "close_window": req.query.cw,
+        "open_prefer": req.query.op,
+        "close_prefer": req.query.cp
+      }
+      fs.writeFile(__dirname + '/users.json', JSON.stringify(users, null, 2), (err) => {if (err) throw err;})
     }
     if (func == 'friends') {
       if (!(Number(parts[1]))) return res.send({error: true})
