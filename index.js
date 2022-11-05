@@ -18,14 +18,14 @@ app.get('/api/*', async (req, res) => {
     }
     if (func == 'getEvents') {
       if (!(Number(parts[1]))) return
-      userEvents = events.filter(theevent => {
+      involvedEvents = []
+      events.forEach(theevent => {
         theevent.users.forEach((eventUser) => {
-          console.log(eventUser.id == Number(parts[1]))
-          if (eventUser.id == Number(parts[1])) return true
-          return false
+          console.log(`${eventUser.id} ${Number(parts[1])} ${eventUser.id == Number(parts[1])}`)
+          if (eventUser.id == Number(parts[1])) involvedEvents.push(theevent)
         })
       })
-      res.send(userEvents)
+      res.send(involvedEvents)
     }
     if (func == 'addfriend') {
       if (!(Number(parts[1]))) return res.send({error: true})
