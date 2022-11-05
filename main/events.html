@@ -1,0 +1,66 @@
+ <!DOCTYPE html>
+<h1>Create an Event</h1>
+
+
+<!-- Date -->
+<form action="index.html" method="get" targe = "_self">
+  <label for="fname">Date:</label>
+  <select id="month" name="month">
+      <option value="january">January</option>
+      <option value="february">February</option>
+      <option value="march">March</option>
+      <option value="april">April</option>
+      <option value="may">May</option>
+      <option value="june">June</option>
+      <option value="january">July</option>
+      <option value="february">August</option>
+      <option value="march">September</option>
+      <option value="april">October</option>
+      <option value="may">November</option>
+      <option value="june">December</option>
+  </select>
+  <input type="text" id="day" name="day" placeholder="DD">
+  <input type="text" id="year" name="year" placeholder="YYYY">
+  <button type="submit" onclick="submit()">Done</button>
+</form>
+
+<br><br>
+
+<!-- Time -->
+<form action="index.html" method="get" targe = "_self">
+  <label for="fname">Time:</label>
+  <input type="text" id="stime" name="stime" placeholder="Start time">
+  <input type="text" id="etime" name="etime" placeholder="End time">
+  <button type="submit" onclick="submit()">Done</button>
+</form>
+
+<br><br>
+
+<!-- Invite friends -->
+<form action="index.html" method="get" targe = "_self">
+  <label for="friend">Invite friends:</label>
+  <input type="text" id="stime" name="stime" placeholder="Email">
+  <button type="submit" onclick="submit()">Find</button>
+</form>
+
+<br><br>
+
+<!-- Other details -->
+<form action="index.html" method="get" targe = "_self">
+  <label for="fname">Other details about the event:</label>
+  <input type="text" id="oinfo" name="oinfo">
+  <button type="submit" onclick="submit()">Done</button>
+</form>
+
+<br><br>
+
+<script>
+
+  function findfriend(){
+    friend = document.getElementById("friend").value
+  }
+  
+  function submit() {
+    stime = document.getElementById("stime").value
+  }
+</script>

@@ -1,3 +1,4 @@
+
 const express = require('express')
 var app = express()
 const fs = require('fs')
@@ -38,6 +39,31 @@ app.get('/api/*', async (req, res) => {
         res.send(founduser)
       }
     }
+    if (func == 'register') {
+      first = req.query.first
+      middle = req.query.middle
+      last = req.query.last
+      email = req.query.email
+      standard = {
+        "monday": {"open_window": req.query['monday-open'], "open_close": req.query['monday-close'], "open_prefer": req.query['monday-open-prefer'], "close_prefer": req.query['monday-close-prefer']},
+        "tuesday": {"open_window": req.query['tuesday-open'], "open_close": req.query['tuesday-close'], "open_prefer": req.query['tuesday-open-prefer'], "close_prefer": req.query['tuesday-close-prefer']},
+        "wednesday": {"open_window": req.query['wednesday-open'], "open_close": req.query['wednesday-close'], "open_prefer": req.query['wednesday-open-prefer'], "close_prefer": req.query['wednesday-close-prefer']},
+        "thursday": {"open_window": req.query['thursday-open'], "open_close": req.query['thursday-close'], "open_prefer": req.query['thursday-open-prefer'], "close_prefer": req.query['thursday-close-prefer']},
+        "friday": {"open_window": req.query['friday-open'], "open_close": req.query['friday-close'], "open_prefer": req.query['friday-open-prefer'], "close_prefer": req.query['friday-close-prefer']},
+        "saturday": {"open_window": req.query['saturday-open'], "open_close": req.query['saturday-close'], "open_prefer": req.query['saturday-open-prefer'], "close_prefer": req.query['saturday-close-prefer']},
+        "sunday": {"open_window": req.query['sunday-open'], "open_close": req.query['sunday-close'], "open_prefer": req.query['sunday-open-prefer'], "close_prefer": req.query['sunday-close-prefer']}
+      }
+      users.push({
+        id: users.length+1,
+        first: first,
+        middle: middle,
+        last: last,
+        email: email,
+        standard: standard
+      })
+      fs.writeFile(__dirname + '/users.json', JSON.stringify(users, null, 2), (err) => {if (err) throw err;})
+      res.send(users[users.length-1])
+    }
   }
   if (req.path.startsWith('/api/events/')) {
     if (func == 'get') {
@@ -65,7 +91,7 @@ app.get('/api/*', async (req, res) => {
         acceptance: true,
         notes: "host"
       }]
-      invited.forEach((invitedUserId) => {
+      data.invited.forEach((invitedUserId) => {
         userlist.push({
           id: invitedUserId,
           acceptance: false,
@@ -74,7 +100,7 @@ app.get('/api/*', async (req, res) => {
       })
       events.push({
         users: userlist,
-        id: events.length-1,
+        id: events.length+1,
         info: {
           name: data.name,
           description: data.description,
@@ -87,11 +113,18 @@ app.get('/api/*', async (req, res) => {
         options: [data['possible-dates'][0]],
         id: newEventId
       })
+      fs.writeFile(__dirname + '/events.json', JSON.stringify(events, null, 2), (err) => {if (err) throw err;})
     }
     if (func == 'confirm') {
       eventId = parts[1]
       start = req.query.start
-      finish = 
+      finish = req.query.finish
+      events.find(theevent => theevent.id == eventId).time = {
+        confirmed: true,
+        start: start,
+        finish: finish
+      }
+      fs.writeFile(__dirname + '/events.json', JSON.stringify(events, null, 2), (err) => {if (err) throw err;})
     }
   }
 })

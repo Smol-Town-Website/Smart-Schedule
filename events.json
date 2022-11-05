@@ -19,7 +19,57 @@
     "time": {
       "confirmed": true,
       "start": "2022-11-05T17:46:00.000Z",
-      "end": "2022-11-05T21:46:00.000Z"
+      "finish": "2022-11-05T21:46:00.000Z"
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 2,
+    "info": {
+      "name": "bruh",
+      "description": "lol",
+      "location": "Zachary's House"
+    },
+    "time": {
+      "confirmed": true,
+      "start": "2022-11-05T17:46:00.000Z",
+      "finish": "2022-11-05T21:46:00.000Z"
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 3,
+    "info": {
+      "name": "bruh",
+      "description": "lol",
+      "location": "Zachary's House"
+    },
+    "time": {
+      "confirmed": true,
+      "start": "2022-11-05T17:46:00.000Z",
+      "finish": "2022-11-05T21:46:00.000Z"
     }
   }
 ]
