@@ -1,0 +1,20 @@
+[
+  {
+    "first": "Iris",
+    "middle": "Siyi",
+    "last": "Chen",
+    "extra": {
+      "email": "crabbywombat101@gmail.com"
+    },
+    "id": 1
+  },
+  {
+    "first": "Zachary",
+    "middle": "Shiau",
+    "last": "Cheng",
+    "extra": {
+      "email": "crabbywombat101@gmail.com"
+    },
+    "id": 2
+  }
+]

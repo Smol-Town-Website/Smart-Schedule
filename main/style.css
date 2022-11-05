@@ -1,0 +1,33 @@
+.background
+
+.topbar {
+  float: right;
+  width: 100%;
+  height: 75px;
+  padding: 0px;
+  margin: 10 px;
+  background-color: #b379d7;
+}
+
+.topbutton {
+  background-color: #ffffff; /* Green */
+  border: none;
+  color: #b379d7;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: right;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav {
+  
+}
