@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 
 <link rel="stylesheet" href="style.css">
 
@@ -11,52 +11,89 @@
   <a href="index.html">Home</a>
   <a href="friends.html">Friends</a>
   <a href="events.html">Events</a>
+  <a href="me.html">Me</a>
 </div>
 
 <br>
+
 <!-- Date -->
-<h3>Date</h3>
-<form action="index.html" method="get" targe = "_self">
-  <select id="month" name="month">
-      <option value="january">January</option>
-      <option value="february">February</option>
-      <option value="march">March</option>
-      <option value="april">April</option>
-      <option value="may">May</option>
-      <option value="june">June</option>
-      <option value="january">July</option>
-      <option value="february">August</option>
-      <option value="march">September</option>
-      <option value="april">October</option>
-      <option value="may">November</option>
-      <option value="june">December</option>
+<h3> Possible Times </h3>
+<!-- <form action="index.html" method="get" targe = "_self"> -->
+  <select id="month" name="month" style="width: 80pt; height: 30px; padding: 0px;">
+      <option value="January">January</option>
+      <option value="February">February</option>
+      <option value="March">March</option>
+      <option value="April">April</option>
+      <option value="May">May</option>
+      <option value="June">June</option>
+      <option value="July">July</option>
+      <option value="August">August</option>
+      <option value="September">September</option>
+      <option value="October">October</option>
+      <option value="November">November</option>
+      <option value="December">December</option>
   </select>
-  <input type="text" id="day" name="day" placeholder="DD">
-  <input type="text" id="year" name="year" placeholder="YYYY">
+  /
+  <input type="number" id="day" name="day" placeholder="DD" style="width: 30pt; height: 20px;" max=31 min=1>
+  /
+  <input type="text" id="year" name="year" placeholder="YYYY" style="width: 60pt; height: 20px; padding: 12px 20px;">
+  <input type="number" id="stime" name="stime" placeholder="HH" style="width: 30pt; height: 20px;" min=0 max=23>:
+  <input type="number" id="stime2" name="stime2" placeholder="MM" style="width: 30pt; height: 20px;" min=0 max=59>
+  -
+  <input type="number" id="etime" name="etime" placeholder="HH" style="width: 30pt; height: 20px;" min=0 max=23>:
+  <input type="number" id="etime2" name="etime2" placeholder="MM" style="width: 30pt; height: 20px;" min=0 max=59>
+  <button onclick="add()">+</button>
+  
 <!--   <button btn type="submit" onclick="submit()">Done</button>
 </form> -->
 
+<p id="Selected">Selected TIMES: </p>
+<script>
+  possibleDates = []
+  currentDate = new Date()
+  document.getElementById("month").value=currentDate.getMonth()+1
+  document.getElementById("day").value=currentDate.getDate()
+  document.getElementById("year").value=currentDate.getFullYear()
+  document.getElementById("stime").placeholder=currentDate.getHours()
+  document.getElementById("stime2").placeholder=currentDate.getMinutes()
+  document.getElementById("etime").placeholder=currentDate.getHours()
+  document.getElementById("etime2").placeholder=currentDate.getMinutes()
+  function add() {
+  
+  document.getElementById("month").value=currentDate.getMonth()+1
+  document.getElementById("day").value=""
+  document.getElementById("year").value=currentDate.getFullYear()
+  document.getElementById("stime").placeholder=""
+  document.getElementById("stime2").placeholder=""
+  document.getElementById("etime").placeholder=""
+  document.getElementById("etime2").placeholder=""
+
+    possibleDates.push({start: new Date(`${document.getElementById("month").value} ${document.getElementById("day").value} ${document.getElementById("year").value} ${document.getElementById("stime").value}:${document.getElementById("stime2").value}`), finish: new Date(`${document.getElementById("month").value} ${document.getElementById("day").value} ${document.getElementById("year").value} ${document.getElementById("etime").value}:${document.getElementById("etime2").value}`)})
+
+    document.getElementById("Selected").innerHTML=document.getElementById("Selected").innerHTML+'\n'+`${possibleDates[possibleDates.length-1].start}-${possibleDates[possibleDates.length-1].finish}`
+    
+  }
+  
+</script>
+  
 <br><br>
 
 <!-- Time -->
-<h3>Preferred time</h3>
-<form action="index.html" method="get" targe = "_self">
-  <input type="text" id="stime" name="stime" placeholder="Start time">
-  <input type="text" id="etime" name="etime" placeholder="End time">
-<!--   <button type="submit" onclick="submit()">Done</button> -->
-  <br><br>
+<!-- <h3>Preferred time</h3> -->
+<!-- <form action="index.html" method="get" targe = "_self">
+  <button type="submit" onclick="submit()">Done</button>
 
-</form>
+</form> -->
 <h3>Preferred length of event</h3>
 <form action="index.html" method="get" targe = "_self">
   <input type="text" id="plength" name="plength" placeholder="(hrs)">
-<!--   <button type="submit" onclick="submit()">Done</button> -->
+  <button type="submit" onclick="submit()">Done</button>
 </form>
 
 <br><br>
 
 <!-- Invite friends -->
-<h3>Invite friends</h3>
+<h3 class = "invitefriends">Invite friends</h3>
 <form action="events.html" method="get" targe = "_self">
   <input type="text" id="stime" name="stime" placeholder="Email">
   <button type="submit" onclick="submit()">Find</button>
@@ -66,22 +103,23 @@
 
 <!-- Other details -->
 <h3>Other details</h3>
-<form action="index.html" method="get" targe = "_self">
+<!-- <form action="index.html" method="get" targe = "_self">
   <input type="text" id="oinfo" name="oinfo" placeholder = "...">
   <button type="submit" onclick="submit()">Done</button>
 </form>
-
+ -->
 <br><br>
 
-<!-- js because im dumb and dont wnna make a new file ecks dee -->
 
 <script>
-
+  
   function findfriend(){
     friend = document.getElementById("friend").value
   }
   
   function submit() {
-    stime = document.getElementById("stime").value
+  var data = JSON.parse(uwu.json);
+  console.log(data.ID);
+  
   }
 </script>

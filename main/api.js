@@ -19,6 +19,10 @@ function api() {
       data = await getData(base + 'users/get/' + id)
       return (JSON.parse(data))
     },
+    async getiCal(id) {
+      data = await getData(base + 'users/getiCal/' + id)
+      return (JSON.parse(data))
+    },
     async friends(id) {
       data = await getData(base + 'users/friends/' + id)
       return (JSON.parse(data))

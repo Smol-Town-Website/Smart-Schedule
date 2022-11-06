@@ -1,4 +1,4 @@
-<!-- CHANGE ID TO NOT IRIS -->
+<!-- Add better login system -->
 
 <!DOCTYPE html>
 <html lang='en'>
@@ -8,8 +8,9 @@
 <meta charset='utf-8' />
 
 <script src="api.js"></script> 
-  
-<link href='fullcalendar/lib/main.css' rel='stylesheet'/> <!-- Calendar code-->
+
+<link href='fullcalendar/lib/main.css' rel='stylesheet'/> 
+  <!-- Calendar code-->
 <script src='fullcalendar/lib/main.js'></script>
 <script>
   async function loadCalendar(id) {
@@ -22,11 +23,16 @@
         parsedEvents.push({
           title: calendarEvent.info.name,
           start: calendarEvent.time.start,
-          end: calendarEvent.time.finish,
-          allDay: false,
+          end: calendarEvent.time.finish
         })
       }
     })
+    icalData = await api().users.getiCal(id)
+    if (!icalData.error) {
+      icalData.forEach((icalEvent) => {
+        parsedEvents.push(icalEvent)
+      })
+    }
     console.log(parsedEvents)
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
@@ -51,7 +57,7 @@
   async function changeAccount() {
     currentUser = await api().users.get(document.getElementById("loginselect").value)
     currentUserId = document.getElementById("loginselect").value
-    alert(`Now logging into ${currentUser.last}, ${currentUser.first}.`)
+    alert(`Now logging into ${currentUser.last}, ${currentUser.first}${currentUser.middle?" "+currentUser.middle:""}.`)
     loadCalendar(currentUserId)
   }
 </script>
@@ -60,7 +66,7 @@
 
 <div class="header">
   <h1> Smart Scheduler </h1>
-</div>
+</div> <!-- remove later??? -->
 
 <body>
   
@@ -68,6 +74,7 @@
   <a href="index.html">Home</a>
   <a href="friends.html">Friends</a>
   <a href="events.html">Events</a>
+  <a href="me.html">Me</a>
 </div>
 
 <div id='calendar' class=calendar></div>

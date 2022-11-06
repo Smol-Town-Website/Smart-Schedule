@@ -1,10 +1,10 @@
-
 const express = require('express')
 var app = express()
 const fs = require('fs')
 const users = JSON.parse(fs.readFileSync(__dirname + '/users.json'))
 const events = JSON.parse(fs.readFileSync(__dirname + '/events.json'))
 const friendships = JSON.parse(fs.readFileSync(__dirname + '/friendships.json'))
+const ical = require('node-ical')
 
 function removeItemOnce(arr, value) {
   var index = arr.indexOf(value);
@@ -18,6 +18,26 @@ app.get('/api/*', async (req, res) => {
   parts = req.path.split('/').slice(3)
   func = parts[0]
   if (req.path.startsWith('/api/users/')) {
+    if (func == 'getiCal') {
+    if (!Number(parts[1])) return res.send({error: true})
+    founduser = users.find(user => user.id == Number(parts[1]))
+    if (!founduser) return res.send({error: true})
+    if (!founduser.ical) return res.send({error: true})
+      ical.fromURL(founduser.ical, {}, (err, data) => {
+        exportevents = []
+        Object.keys(data).forEach((key) => {
+          if (key !== 'vcalendar') {
+            eventdata = data[key]
+            exportevents.push({
+              start: eventdata.start,
+              end: eventdata.end,
+              title: eventdata.summary
+            })
+          }
+        })
+        res.send(exportevents)
+      })
+    }
     if (func == 'get') {
       if (!(Number(parts[1]))) return
       founduser = users.find(u => u.id == Number(parts[1]))
