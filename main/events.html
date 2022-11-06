@@ -11,15 +11,17 @@
   <a href="index.html">Home</a>
   <a href="friends.html">Friends</a>
   <a href="events.html">Events</a>
-  <a href="me.html">Me</a>
+<!--   <a href="me.html">Me</a> -->
 </div>
 
-<br>
+<br><br>
 
+<h3>Event name/description</h3>
+<input type="text" id="nameofevent" name="nameofevent" placeholder = "Name of event:">:
+<input type="text" id="oinfo" name="oinfo" placeholder = "Description of event:">
 <!-- Date -->
-<h3> Possible Times </h3>
-<!-- <form action="index.html" method="get" targe = "_self"> -->
-  <select id="month" name="month" style="width: 80pt; height: 30px; padding: 0px;">
+<h3> Possible Times </h3> 
+  <select id="month" name="month">
       <option value="January">January</option>
       <option value="February">February</option>
       <option value="March">March</option>
@@ -33,19 +35,15 @@
       <option value="November">November</option>
       <option value="December">December</option>
   </select>
-  /
-  <input type="number" id="day" name="day" placeholder="DD" style="width: 30pt; height: 20px;" max=31 min=1>
-  /
-  <input type="text" id="year" name="year" placeholder="YYYY" style="width: 60pt; height: 20px; padding: 12px 20px;">
-  <input type="number" id="stime" name="stime" placeholder="HH" style="width: 30pt; height: 20px;" min=0 max=23>:
-  <input type="number" id="stime2" name="stime2" placeholder="MM" style="width: 30pt; height: 20px;" min=0 max=59>
-  -
-  <input type="number" id="etime" name="etime" placeholder="HH" style="width: 30pt; height: 20px;" min=0 max=23>:
-  <input type="number" id="etime2" name="etime2" placeholder="MM" style="width: 30pt; height: 20px;" min=0 max=59>
+  
+  <input type="number" id="day" name="day" placeholder="DD">
+  <input type="text" id="year" name="year" placeholder="YYYY" ">
+  <input type="number" id="stime" name="stime" placeholder="HH">
+  <input type="number" id="stime2" name="stime2" placeholder="MM">
+  <input type="number" id="etime" name="etime" placeholder="HH">
+  <input type="number" id="etime2" name="etime2" placeholder="MM">
   <button onclick="add()">+</button>
   
-<!--   <button btn type="submit" onclick="submit()">Done</button>
-</form> -->
 
 <p id="Selected">Selected TIMES: </p>
 <script>
@@ -60,15 +58,14 @@
   document.getElementById("etime2").placeholder=currentDate.getMinutes()
   function add() {
   
-  document.getElementById("month").value=currentDate.getMonth()+1
+possibleDates.push({start: new Date(`${document.getElementById("month").value} ${document.getElementById("day").value} ${document.getElementById("year").value} ${document.getElementById("stime").value}:${document.getElementById("stime2").value}`), finish: new Date(`${document.getElementById("month").value} ${document.getElementById("day").value} ${document.getElementById("year").value} ${document.getElementById("etime").value}:${document.getElementById("etime2").value}`)})
+    document.getElementById("month").value=currentDate.getMonth()+1
   document.getElementById("day").value=""
   document.getElementById("year").value=currentDate.getFullYear()
   document.getElementById("stime").placeholder=""
   document.getElementById("stime2").placeholder=""
   document.getElementById("etime").placeholder=""
   document.getElementById("etime2").placeholder=""
-
-    possibleDates.push({start: new Date(`${document.getElementById("month").value} ${document.getElementById("day").value} ${document.getElementById("year").value} ${document.getElementById("stime").value}:${document.getElementById("stime2").value}`), finish: new Date(`${document.getElementById("month").value} ${document.getElementById("day").value} ${document.getElementById("year").value} ${document.getElementById("etime").value}:${document.getElementById("etime2").value}`)})
 
     document.getElementById("Selected").innerHTML=document.getElementById("Selected").innerHTML+'\n'+`${possibleDates[possibleDates.length-1].start}-${possibleDates[possibleDates.length-1].finish}`
     
@@ -86,40 +83,68 @@
 </form> -->
 <h3>Preferred length of event</h3>
 <form action="index.html" method="get" targe = "_self">
-  <input type="text" id="plength" name="plength" placeholder="(hrs)">
+  <input type="number" id="plength" name="plength" placeholder="(minutes)" min=15 max=300>
   <button type="submit" onclick="submit()">Done</button>
 </form>
 
 <br><br>
 
 <!-- Invite friends -->
-<h3 class = "invitefriends">Invite friends</h3>
-<form action="events.html" method="get" targe = "_self">
-  <input type="text" id="stime" name="stime" placeholder="Email">
-  <button type="submit" onclick="submit()">Find</button>
+<h3 class = "invitefriends">Invite People</h3>
+ <select name="login" id="loginselect"></select>
+<button onclick="addmember()">Add</button>
+<form action="events.html" method="get" targe = "_self" id="invites">
+  
 </form>
 
 <br><br>
 
-<!-- Other details -->
-<h3>Other details</h3>
-<!-- <form action="index.html" method="get" targe = "_self">
-  <input type="text" id="oinfo" name="oinfo" placeholder = "...">
-  <button type="submit" onclick="submit()">Done</button>
-</form>
- -->
 <br><br>
 
 
 <script>
+
+  // async function loadUsers() {
+  //   allUsers = await api().users.allUsers()
+  //   allUsers.forEach()
+  // }
+
+  api().users.allUsers().then((users) => {
+    users = users.sort((a, b) => {
+      if (a.last>b.last) { return -1 } else { return 1 }
+    })
+    users.forEach((user) => {
+      option = document.createElement('option')
+      option.value = user.id
+      option.innerHTML = `${user.first} ${user.middle?user.middle:""}`
+      document.getElementById("loginselect").appendChild(option)
+    })
+  })
   
   function findfriend(){
     friend = document.getElementById("friend").value
   }
-  
   function submit() {
   var data = JSON.parse(uwu.json);
   console.log(data.ID);
   
   }
+  async function getTimes() {
+    data = await api().events.new(1, {
+      description: document.getElementById('oinfo').value,
+      name: document.getElementById('nameofevent').value,
+      "possible-dates": possibleDates,
+      "invited": invitedMembers,
+      "length": document.getElementById('plength').value,
+      location: "quirky"
+    })
+    alert(`The event will take place ${data.options[0].start}-${data.options[0].finish}.`)
+    console.log(data)
+  }
+  invitedMembers = []
+  async function addmember() {
+    invitedMembers.push(document.getElementById("loginselect").value)
+  }
 </script>
+
+<button onclick="getTimes()">Get Times</button>

@@ -12,17 +12,18 @@
       }
     ],
     "info": {
-      "name": "uwu at a Hackathon",
+      "name": "Coding Challenge",
       "location": "La casa de Zachary",
       "description": "Iris and Zachary are being bad at coding."
     },
     "time": {
       "confirmed": true,
-      "start": "2022-11-05T17:46:00.000Z",
+      "start": "2022-11-05T18:00:00.000Z",
       "finish": "2022-11-05T21:46:00.000Z"
     }
   },
   {
+    "id": 2,
     "users": [
       {
         "id": 1,
@@ -35,16 +36,15 @@
         "notes": "invited"
       }
     ],
-    "id": 2,
     "info": {
-      "name": "bruh",
-      "description": "lol",
-      "location": "Zachary's House"
+      "name": "Volleyball",
+      "description": "Iris's Volleyball Practice",
+      "location": "WRMS Gym"
     },
     "time": {
       "confirmed": true,
-      "start": "2022-11-05T17:46:00.000Z",
-      "finish": "2022-11-05T21:46:00.000Z"
+      "start": "2022-11-05T21:00:00.000Z",
+      "finish": "2022-11-05T23:00:00.000Z"
     }
   },
   {
@@ -62,14 +62,285 @@
     ],
     "id": 3,
     "info": {
-      "name": "bruh",
+      "name": "Park Meetup",
       "description": "lol",
       "location": "Zachary's House"
     },
     "time": {
       "confirmed": true,
-      "start": "2022-11-05T17:46:00.000Z",
-      "finish": "2022-11-05T21:46:00.000Z"
+      "start": "2022-11-05T14:00:00.000Z",
+      "finish": "2022-11-05T16:00:00.000Z"
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 58,
+    "info": {
+      "name": "",
+      "description": "",
+      "location": "quirky"
+    },
+    "time": {
+      "confirmed": false
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 5,
+    "info": {
+      "name": "park meetup",
+      "description": "being quirky",
+      "location": "quirky"
+    },
+    "time": {
+      "confirmed": false
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 6,
+    "info": {
+      "name": "park meetup",
+      "description": "being quirky",
+      "location": "quirky"
+    },
+    "time": {
+      "confirmed": false
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 7,
+    "info": {
+      "name": "",
+      "description": "",
+      "location": "quirky"
+    },
+    "time": {
+      "confirmed": false
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 8,
+    "info": {
+      "name": "",
+      "description": "",
+      "location": "quirky"
+    },
+    "time": {
+      "confirmed": false
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 9,
+    "info": {
+      "name": "",
+      "description": "",
+      "location": "quirky"
+    },
+    "time": {
+      "confirmed": false
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 10,
+    "info": {
+      "name": "Event",
+      "description": "Big event",
+      "location": "quirky"
+    },
+    "time": {
+      "confirmed": false
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 11,
+    "info": {
+      "name": "Event",
+      "description": "Big event",
+      "location": "quirky"
+    },
+    "time": {
+      "confirmed": false
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 12,
+    "info": {
+      "name": "",
+      "description": "",
+      "location": "quirky"
+    },
+    "time": {
+      "confirmed": false
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 13,
+    "info": {
+      "name": "",
+      "description": "",
+      "location": "quirky"
+    },
+    "time": {
+      "confirmed": false
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      },
+      {
+        "id": 2,
+        "acceptance": false,
+        "notes": "invited"
+      }
+    ],
+    "id": 14,
+    "info": {
+      "name": "",
+      "description": "",
+      "location": "quirky"
+    },
+    "time": {
+      "confirmed": false
+    }
+  },
+  {
+    "users": [
+      {
+        "id": 1,
+        "acceptance": true,
+        "notes": "host"
+      }
+    ],
+    "id": 15,
+    "info": {
+      "name": "PARTY!!!",
+      "description": "Party :D",
+      "location": "quirky"
+    },
+    "time": {
+      "confirmed": false
     }
   }
 ]

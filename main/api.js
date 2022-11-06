@@ -3,7 +3,7 @@ async function getData(url) {
     fetch(url, {
       method: 'GET',
       headers: {
-          'Accept': 'application/json',
+        'Accept': 'application/json',
       },
     })
     .then(response => response.text())
@@ -52,6 +52,10 @@ function api() {
       data = await getData(base + 'users/getEvents/' + id)
       return (JSON.parse(data))
     },
+    async checkPassword(id, password) {
+      data = await getData(base + 'users/checkPass/' + id + '?attempt=' + password)
+      return JSON.parse(data)
+    },
     async register(options) {
       data = await getData(base + `usersregister?first=${options.first}&last=${options.last}&monday-open=${options.availability.monday['open']}&monday-open-prefer=${options.availability.monday['close-prefer']}&monday-close-prefer=${options.availability.monday['close-prefer']}&monday-close=${options.availability.monday['close']}&tuesday-open=${options.availability.tuesday['open']}&tuesday-open-prefer=${options.availability.tuesday['close-prefer']}&tuesday-close-prefer=${options.availability.tuesday['close-prefer']}&tuesday-close=${options.availability.tuesday['close']}&wednesday-open=${options.availability.wednesday['open']}&wednesday-open-prefer=${options.availability.wednesday['close-prefer']}&wednesday-close-prefer=${options.availability.wednesday['close-prefer']}&wednesday-close=${options.availability.wednesday['close']}&thursday-open=${options.availability.thursday['open']}&thursday-open-prefer=${options.availability.thursday['close-prefer']}&thursday-close-prefer=${options.availability.thursday['close-prefer']}&thursday-close=${options.availability.thursday['close']}&friday-open=${options.availability.friday['open']}&friday-open-prefer=${options.availability.friday['close-prefer']}&friday-close-prefer=${options.availability.friday['close-prefer']}&friday-close=${options.availability.friday['close']}&saturday-open=${options.availability.saturday['open']}&saturday-open-prefer=${options.availability.saturday['close-prefer']}&saturday-close-prefer=${options.availability.saturday['close-prefer']}&saturday-close=${options.availability.saturday['close']}&sunday-open=${options.availability.sunday['open']}&sunday-open-prefer=${options.availability.sunday['close-prefer']}&sunday-close-prefer=${options.availability.sunday['close-prefer']}&sunday-close=${options.availability.sunday['close']}`)
     }
@@ -69,8 +73,9 @@ function api() {
       data = await getData(base + 'confirm/' + event_id + '?start=' + start + '&finish=' + finish)
       return JSON.parse(data)
     },
-    async new(id, name, options) {
-      data = await getData(`${base}/new/${id}`)
+    async new (id, options) {
+      data = await getData(`${base}/events/new/${id}?data=` + JSON.stringify(options))
+      return JSON.parse(data)
     }
   }
   

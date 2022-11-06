@@ -146,8 +146,8 @@ app.get('/api/*', async (req, res) => {
       fs.writeFile(__dirname + '/events.json', JSON.stringify(events, null, 2), (err) => {if (err) throw err;})
     }
     if (func == 'new') {
-      data = JSON.parse(req.headers.data)
-      console.log(data)
+      data = JSON.parse(req.query.data)
+      
       userlist = [{
         id: Number(parts[1]),
         acceptance: true,
@@ -171,8 +171,84 @@ app.get('/api/*', async (req, res) => {
         time: {confirmed: false}
       })
       newEventId = events.length
+
+      console.log(data['possible-dates'])
+
+      windows = {} /* start, denial */
+      data['possible-dates'].forEach((possibledate) => {
+        start = new Date(possibledate.start)
+        finish = new Date(possibledate.finish)
+        increments = (finish-start)/1000/60/15
+        for (i = 0; i < increments; i ++ ) {
+          prevconsec = true
+          if (i==0) prevconsec = false
+          windows[start] = {denial: 0, prevConsecutive: prevconsec}
+          start.setMinutes(start.getMinutes()+15)
+        }
+        console.log(windows)
+      })
+      
+      returnedOptions = []
+
+      data.invited.forEach((invitedUserId) => {
+      userEvents = []
+      events.forEach(theevent => {
+        theevent.users.forEach((eventUser) => {
+          if (eventUser.id == invitedUserId && theevent.time.confirmed == true) userEvents.push(theevent.time)
+        })
+      })
+      
+      userEvents.forEach((userEvent) => {
+        eventStart = new Date(userEvent.start)
+        eventFinish = new Date(userEvent.finish)
+        increments = (eventFinish-eventStart)/1000/60/15
+        for (i = 0; i < increments; i++) {
+          Object.keys(windows).forEach((window) => {
+            if (Math.abs(eventStart-new Date(window)) <= 15) windows[window].denial += 1
+          })
+          eventStart.setMinutes(eventStart.getMinutes()+15)
+        }
+      })
+        console.log(windows)
+      })
+
+      lengthincrements = Math.round(data.length/15)
+      console.log(lengthincrements)
+      startratings = {}
+      for (i=0; i < Object.keys(windows).length; i++) {
+        for (x=0; x < lengthincrements; x ++) {
+          totaldenial = 0
+          if (!Object.keys(windows)[i+x]) break;
+          console.log(`${JSON.stringify(windows[Object.keys(windows)[i+x]])}`)
+          if (x>0 && windows[Object.keys(windows)[i+x]].prevConsecutive == false) break;
+          totaldenial += windows[Object.keys(windows)[i+x]].denial
+          
+        }
+        if (x == lengthincrements-1) startratings[i] = {denial: totaldenial, start: Object.keys(windows)[i-1], finish: Object.keys(windows)[i+lengthincrements-2]}
+      }
+      startarray = []
+      Object.keys(startratings).forEach((key) => {
+        startarray.push({
+          id: key,
+          denial: startratings[key].denial,
+          start: startratings[key].start,
+          finish: startratings[key].finish
+        })
+      })
+      startarray = startarray.sort((a, b) => {
+        return a.denial-b.denial
+      })
+      startarray = startarray.slice(0, startarray.length<4?startarray.length:4)
+
+      startarray.forEach((option) => {
+        returnedOptions.push({
+          start: option.start,
+          finish: option.finish
+        })
+      })
+      
       res.send({
-        options: [data['possible-dates'][0]],
+        options: returnedOptions,
         id: newEventId
       })
       fs.writeFile(__dirname + '/events.json', JSON.stringify(events, null, 2), (err) => {if (err) throw err;})
